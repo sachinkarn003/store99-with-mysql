@@ -5,7 +5,7 @@ module.exports=(sequelize,DataTypes)=>{
             allowNull: false,
             validate: {
                 notEmpty: true, // Make sure the email field is not empty
-              }
+            }
         },
         price:{
             type:DataTypes.INTEGER,
@@ -24,8 +24,16 @@ module.exports=(sequelize,DataTypes)=>{
         image:{
             type:DataTypes.STRING,
             defaultValue:null
+        },
+        categoryId:{
+            type:DataTypes.INTEGER,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
         }
     });
+
     return products;
 }
 

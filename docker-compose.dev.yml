@@ -1,0 +1,29 @@
+version: '3'
+services:
+  store99:
+    build: 
+      context: .
+      args:
+        - NODE_ENV=development
+    volumes:
+      - ./:/store99
+      - /store99/node_modules
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=localhost
+      - DB_NAME=store99
+      - DB_PORT=3306
+    stdin_open: true
+    tty: true
+    command: npm run dev
+  mysql:
+    restart: unless-stopped
+    ports:
+      - 3306
+    environment:
+
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+      MYSQL_DATABAS: store99
+

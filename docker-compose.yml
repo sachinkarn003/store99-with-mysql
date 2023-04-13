@@ -1,0 +1,22 @@
+version: '3'
+services:
+  store99:
+    build: .
+    volumes:
+      - ./:/store99
+      - /store99/node_modules
+    environment:
+      - PORT=4000
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+      MYSQL_DATABASE: store99
+    volumes:
+      - mysql-db:/var/lib/mysql
+volumes:
+  mysql-db:
